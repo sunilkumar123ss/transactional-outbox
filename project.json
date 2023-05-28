@@ -1,0 +1,8 @@
+{
+  "slug": "transactional-outbox",
+  "title": "Transactional outbox",
+  "description": "Commit business records and publishable events in one SQLite transaction.",
+  "category": "systems",
+  "demo_args": [],
+  "expected_exit": 0
+}
