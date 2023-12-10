@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 2 of 15. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 3 of 15. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -14,7 +14,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | --- | --- | --- |
 | 1 | 2023-05-28T10:24:11+05:30 | add repository metadata and Python ignore rules (present) |
 | 2 | 2023-06-11T11:03:28+05:30 | add module imports, constants, and scope documentation (present) |
-| 3 | 2023-12-10T16:26:27+05:30 | initialize the SQLite order and outbox schema (later stage) |
+| 3 | 2023-12-10T16:26:27+05:30 | initialize the SQLite order and outbox schema (present) |
 | 4 | 2024-04-09T12:06:10+05:30 | commit order creation and its outbox event atomically (later stage) |
 | 5 | 2024-06-09T10:34:15+05:30 | publish pending events and acknowledge successful callbacks (later stage) |
 | 6 | 2024-06-26T19:33:42+05:30 | add the deterministic demonstration and command-line entry point (later stage) |
