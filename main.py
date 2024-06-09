@@ -18,3 +18,14 @@ def create_order(db, order_id, payload):
     with db:
         db.execute('INSERT INTO orders VALUES (?,?)', (order_id, encoded))
         db.execute('INSERT INTO outbox(order_id,event) VALUES (?,?)', (order_id, event))
+
+def publish_pending(db, send):
+    if db.in_transaction:
+        raise ValueError('Caller transaction must be completed first')
+    sent = []
+    for (event_id, body) in db.execute('SELECT id,event FROM outbox WHERE sent=0 ORDER BY id').fetchall():
+        send(event_id, json.loads(body))
+        with db:
+            db.execute('UPDATE outbox SET sent=1 WHERE id=?', (event_id,))
+        sent.append(event_id)
+    return sent
