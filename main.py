@@ -29,3 +29,16 @@ def publish_pending(db, send):
             db.execute('UPDATE outbox SET sent=1 WHERE id=?', (event_id,))
         sent.append(event_id)
     return sent
+
+def demo():
+    db = connect()
+    delivered = []
+    try:
+        create_order(db, 'synthetic-order-1', {'item': 'voice-kit', 'quantity': 2})
+        ids = publish_pending(db, lambda event_id, body: delivered.append({'event_id': event_id, **body}))
+        return {'published_ids': ids, 'events': delivered, 'delivery': 'at least once'}
+    finally:
+        db.close()
+if __name__ == '__main__':
+    argparse.ArgumentParser(description=__doc__).parse_args()
+    print(json.dumps(demo(), indent=2))
