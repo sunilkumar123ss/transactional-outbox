@@ -23,6 +23,11 @@ class OutboxTests(unittest.TestCase):
         self.assertEqual(seen[0]['order_id'], 'a')
         self.assertEqual(m.publish_pending(self.db, lambda *args: self.fail()), [])
 
+    def test_duplicate_does_not_duplicate_event(self):
+        m.create_order(self.db, 'a', {})
+        with self.assertRaises(sqlite3.IntegrityError):
+            m.create_order(self.db, 'a', {})
+        self.assertEqual(self.db.execute('SELECT count(*) FROM outbox').fetchone()[0], 1)
 
 
 
