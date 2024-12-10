@@ -29,6 +29,14 @@ class OutboxTests(unittest.TestCase):
             m.create_order(self.db, 'a', {})
         self.assertEqual(self.db.execute('SELECT count(*) FROM outbox').fetchone()[0], 1)
 
+    def test_failed_callback_remains_pending(self):
+        m.create_order(self.db, 'a', {})
+
+        def fail(*args):
+            raise RuntimeError('transport failed')
+        with self.assertRaises(RuntimeError):
+            m.publish_pending(self.db, fail)
+        self.assertEqual(m.publish_pending(self.db, lambda *args: None), [1])
 
 
 
