@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 9 of 15. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 10 of 15. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -21,7 +21,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 7 | 2024-09-23T19:18:26+05:30 | test success is acknowledged (present) |
 | 8 | 2024-10-21T11:00:26+05:30 | test duplicate does not duplicate event (present) |
 | 9 | 2024-12-10T12:20:37+05:30 | test failed callback remains pending (present) |
-| 10 | 2025-02-10T11:54:42+05:30 | test outbox insert failure rolls back order (later stage) |
+| 10 | 2025-02-10T11:54:42+05:30 | test outbox insert failure rolls back order (present) |
 | 11 | 2025-04-28T17:43:55+05:30 | test invalid json writes nothing (later stage) |
 | 12 | 2025-08-05T13:18:59+05:30 | test publication order (later stage) |
 | 13 | 2026-04-18T11:47:09+05:30 | add isolated tests, demo, and help verification (later stage) |

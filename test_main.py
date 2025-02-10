@@ -38,6 +38,12 @@ class OutboxTests(unittest.TestCase):
             m.publish_pending(self.db, fail)
         self.assertEqual(m.publish_pending(self.db, lambda *args: None), [1])
 
+    def test_outbox_insert_failure_rolls_back_order(self):
+        with self.db:
+            self.db.execute("INSERT INTO outbox(order_id,event) VALUES ('a','{}')")
+        with self.assertRaises(sqlite3.IntegrityError):
+            m.create_order(self.db, 'a', {})
+        self.assertEqual(self.db.execute('SELECT count(*) FROM orders').fetchone()[0], 0)
 
 
 if __name__ == '__main__':
