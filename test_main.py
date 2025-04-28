@@ -45,6 +45,10 @@ class OutboxTests(unittest.TestCase):
             m.create_order(self.db, 'a', {})
         self.assertEqual(self.db.execute('SELECT count(*) FROM orders').fetchone()[0], 0)
 
+    def test_invalid_json_writes_nothing(self):
+        with self.assertRaises(ValueError):
+            m.create_order(self.db, 'a', {'x': float('nan')})
+        self.assertEqual(self.db.execute('SELECT count(*) FROM orders').fetchone()[0], 0)
 
 if __name__ == '__main__':
     unittest.main()
