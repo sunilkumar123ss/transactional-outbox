@@ -50,5 +50,11 @@ class OutboxTests(unittest.TestCase):
             m.create_order(self.db, 'a', {'x': float('nan')})
         self.assertEqual(self.db.execute('SELECT count(*) FROM orders').fetchone()[0], 0)
 
+    def test_publication_order(self):
+        for key in ['z', 'a', 'm']:
+            m.create_order(self.db, key, {})
+        seen = []
+        m.publish_pending(self.db, lambda i, e: seen.append(e['order_id']))
+        self.assertEqual(seen, ['z', 'a', 'm'])
 if __name__ == '__main__':
     unittest.main()
